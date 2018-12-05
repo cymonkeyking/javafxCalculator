@@ -1,0 +1,89 @@
+package Test;
+import javafx.application.*;
+import javafx.geometry.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.*;
+public class jisuanqi extends Application{
+	private TextField number1 = new TextField();
+	private TextField number2 = new TextField();
+	private TextField result = new TextField();
+	private Button btAdd = new Button("Add");
+	private Button btSubtract = new Button("Subtract");
+	private Button btMultiply = new Button("Multiply");
+	private Button btDivide = new Button("Divide");
+	
+	public void start(Stage pr) {
+		GridPane gridPane = new GridPane();
+		gridPane.setHgap(5);
+		gridPane.setVgap(5);
+		gridPane.add(new Label("Number1"), 0, 0);
+		gridPane.add(number1, 1, 0);
+		gridPane.add(new Label("Number2"), 2, 0);
+		gridPane.add(number2, 3, 0);
+		gridPane.add(new Label("Rasult"),4, 0);
+		gridPane.add(result, 5, 0);
+		gridPane.add(btAdd, 1, 1);
+		gridPane.add(btSubtract, 2,1);
+		gridPane.add(btMultiply, 3, 1);
+		gridPane.add(btDivide, 4, 1);
+		
+		gridPane.setAlignment(Pos.CENTER);
+		number1.setAlignment(Pos.BOTTOM_RIGHT);
+		number2.setAlignment(Pos.BOTTOM_RIGHT);
+		result.setAlignment(Pos.BOTTOM_RIGHT);
+		result.setEditable(false);
+		
+		btAdd.setOnAction(e -> Add());
+		btSubtract.setOnAction(e -> Subtract());
+		btMultiply.setOnAction(e -> Multiply());
+		btDivide.setOnAction(e -> Divide());
+		
+		Scene scene = new Scene(gridPane,900,300);
+		pr.setTitle("Calculator");
+		pr.setScene(scene);
+		pr.show();
+	}
+
+	public void Add() {
+		double Number1 = Double.parseDouble(number1.getText());
+		double Number2 = Double.parseDouble(number2.getText());
+		double Addresult = Number1 + Number2;
+		result.setText(String.format("%f",Addresult));
+	}
+	
+	public void Subtract() {
+		double Number1 = Double.parseDouble(number1.getText());
+		double Number2 = Double.parseDouble(number2.getText());
+		double Subtractresult = Number1 - Number2;
+		result.setText(String.format("%f",Subtractresult));
+	}
+	
+	public void Multiply() {
+		double Number1 = Double.parseDouble(number1.getText());
+		double Number2 = Double.parseDouble(number2.getText());
+		double Multiplyresult = Number1 * Number2;
+		result.setText(String.format("%f",Multiplyresult));
+	}
+	
+	public void Divide() {
+		double Number1 = Double.parseDouble(number1.getText());
+		double Number2 = Double.parseDouble(number2.getText());
+		if(Number2 == 0) {
+			result.setText("Error");
+		}
+		else {
+			double Divideresult = Number1 - Number2;
+			result.setText(String.format("%f",Divideresult));
+		}
+		
+	}
+	
+
+	public static void main(String[] args) {
+		Application.launch(args);
+
+	}
+
+}
